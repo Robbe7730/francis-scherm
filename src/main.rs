@@ -5,11 +5,10 @@ use embedded_graphics::prelude::*;
 use embedded_graphics::mono_font::MonoTextStyle;
 use embedded_graphics::mono_font::ascii::FONT_6X10;
 use embedded_graphics::text::{TextStyleBuilder, Baseline, Text};
-use embedded_graphics::image::Image;
-
-use tinybmp::Bmp;
 
 use rayon::prelude::*;
+
+use rand::{thread_rng, Rng};
 
 struct FrancisScherm {}
 
@@ -67,17 +66,17 @@ fn main() {
         .baseline(Baseline::Top)
         .build();
 
-    Text::with_text_style(
-        "Pieter",
-        Point::new(150, 100),
-        character_style,
-        text_style,
-    ).draw(&mut scherm).unwrap();
-    
-    // let bmp_data = include_bytes!("../poes888.bmp");
-    // let image = Bmp::<Rgb888>::from_slice(bmp_data).unwrap();
-    // Image::new(&image, Point::new(25,50))
-    //     .draw(&mut scherm)
-    //     .unwrap();
+    let mut rng = thread_rng();
 
+    loop {
+        let x: u32 = rng.gen_range(0..800);
+        let y: u32 = rng.gen_range(0..600);
+
+        Text::with_text_style(
+            "Niko",
+            Point::new(x.try_into().unwrap(), y.try_into().unwrap()),
+            character_style,
+            text_style,
+        ).draw(&mut scherm).unwrap();
+    }
 }

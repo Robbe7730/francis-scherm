@@ -10,3 +10,4 @@ embedded-graphics = "0.7.1"
 reqwest = { version = "0.11", features = ["blocking"] }
 tinybmp = "0.3.1"
 rayon = "1.5.1"
+rand = "0.8.5"
